@@ -1,0 +1,34 @@
+{% extends 'dash/base.html' %}
+<html>
+{% block body_block %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/register.css'%}">
+<body>
+	<form action="/dash/register/" method="POST" enctype="multipart/form-data">
+		<h1>Register</h1>
+		<fieldset>
+			<legend><span class="number">1</span>Account Information</legend>
+			<!-- Display each form here -->
+			{% csrf_token %}			
+			{% for field in user_form.visible_fields %}
+			{{ field.errors }}
+			{{ field.help_text }}<br />
+			{{ field }}<br />
+			{% endfor %}
+			</fieldset>
+			<fieldset>
+			<legend><span class="number">2</span>Personal Information</legend>
+			{% for field in profile_form.visible_fields %}
+			{{ field.errors }}
+			{{ field.help_text }}<br />
+			{{ field }}<br />
+			{% endfor %}
+			</fieldset>
+			<br />
+			<!--Provide a button to click to submit the form. -->
+			<button type="submit">Sign Up</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
+</html>

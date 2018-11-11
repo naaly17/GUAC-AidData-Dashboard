@@ -1,0 +1,25 @@
+{% extends 'dash/base.html' %}
+{% block body_block %}
+{% load staticfiles %}
+<link href="{% static 'css/login.css'%}" rel="stylesheet">
+<div id="login">
+	<h2>Sign In</h2>
+
+	{% if form.non_field_errors %}
+		<ul class='form-errors'>
+			{% for error in form.non_field_errors %}
+				<li> {{ error }} </li>
+			{% endfor %}
+		</ul>
+	{% endif %}	
+	<form action="/dash/login/" method="POST">
+		{% csrf_token %}	
+		<fieldset>
+		<p><label for="text">Username</label></p><p><input type="text" name="username" value="Username" onBlur="if(this.value=='')this.value='Username'" onFocus="if(this.value=='Username')this.value=''"></p>
+		<p><label for="password">Password</label></p><input type="password" name="password" value="password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='password')this.value=''"></p>
+		<p><input type="submit" value="Sign In"></p>
+		<p><a href="/dash/register/">New User?</a>
+		</fieldset>
+	</form>
+</div>
+{% endblock %}
